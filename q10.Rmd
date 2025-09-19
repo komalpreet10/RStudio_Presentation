@@ -1,0 +1,72 @@
+---
+title: "521 Lab 3: Cars Analysis"
+subtitle: "Exploring Speed vs Stopping Distance"
+author: "Yuting, Junli, Komalpreet, Audrija"
+institute: "UBC"
+date: "2025/9/17"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+
+```{r setup, include=FALSE}
+library(ggplot2)
+options(htmltools.dir.version = FALSE)
+```
+
+# Slide 1 — Introduction
+
+We'll explore the **relationship between car speed and stopping distance**.
+
+**Goals:**
+- Summarize the dataset with key statistics
+- Visualize trends with plots
+
+**Dataset:** `cars` (speed and stopping distance)
+
+---
+
+# Slide 2 — Summary Statistics
+
+```{r}
+# Simple statistics for cars dataset
+x <- cars$speed
+y <- cars$dist
+
+summary_stats <- data.frame(
+  Variable = c("Speed", "Distance"),
+  Mean = c(mean(x), mean(y)),
+  SD = c(sd(x), sd(y)),
+  Min = c(min(x), min(y)),
+  Max = c(max(x), max(y))
+)
+summary_stats
+```
+---
+
+# Slide 3 — Speed vs Stopping Distance Plot
+  
+```{r, fig.height=4}
+ggplot(cars, aes(x = speed, y = dist)) +
+  geom_point(color = "blue", size = 3) +
+  geom_smooth(method = "lm", color = "red", linetype = "dashed") +
+  labs(title = "Car Speed vs Stopping Distance",
+       x = "Speed (mph)", y = "Stopping Distance (ft)") +
+  theme_minimal(base_size = 16)
+```
+---
+
+# Slide 4 — Conclusion
+
+**Summary:**
+- Speed affects stopping distance significantly.
+
+**Key Takeaway:**
+- Safety depends on speed — faster vehicles require more distance to stop.
+
+**Thank you!** Questions welcome.
